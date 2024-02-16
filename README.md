@@ -38,15 +38,19 @@ The Build Strategy can be choice of: {None,Mixed,HumveeFest,HardTank,BuildEconom
 The Attack Targets could be one of : {None, Harvester,HarvesterEscorts,BaseSpecific,BaseDefences,BaseGeneral}
 
 There are many Tactical Ploys. "Escort the Harvester", "Survey and Protect the Base", "Support local Units Under Attack", "Degrade Local Units"
+
+![ScreenShot](SimpleBattle.PNG)
   
 ## Fog Of War Implementation ##
 The Fog of War implementation is rather basic, but necessarily to hide the enemy intent.  This is implemented as a two part process.  
+![ScreenShot](FOG1.PNG)
 
 It uses a second (Orthogonal) Camera, that is viewing a 20x20 matrix Fog Mask segments. These are controlled by the FogWarManager. The FogWarManager switches FOG segments on or off, according to the location of Player Units. 
 
 The FOG Camera is viewing these FOG Mask Segments matrix, and the renders its view into a Custom Render Texture. This Custom Render Texture is used as an input into a FOG Shader, which masks part of the FOG Overaly Plane Surface in the main scene.  
+![ScreenShot](FOG2.PNG)
 
-![ScreenShot](SimpleBattle.PNG)
+
 
 
 
