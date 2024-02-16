@@ -13,7 +13,9 @@ This project is a bottom up attempt to implement an interesting Enemy behaviours
 
 ![ScreenShot](HarvesterPic.PNG)
 
-So the code is not pretty.  The main C# Script files are as follows: 
+The Unity Package has been uploaded containing my code into this GIT repository. So most of the Assets and Code to run can be imported into a Unity Project. You will also need to Import Text Mesh Pro from Unity for the main User Interface, and some Grass, Mud, Rock Terrain textures from Third Party Packages. 
+
+So the code is not pretty.  The main C# Script files are as follows, andhave been uploaded for view explicitly: 
 
 -   GameManager.CS           :  This manages the overall RTS Mission Game. It spawns the Player and the Enemy Base.  
 -   PlayerUserInterface.CS   :  This provides the user interface for the Player (Green)  
