@@ -37,11 +37,11 @@ Most of the "Interesting" code is managed within the EnemyAIManager.CS.  This is
 The Build Strategy can be choice of: {None,Mixed,HumveeFest,HardTank,BuildEconomy,BuildDefences}
 The Attack Targets could be one of : {None, Harvester,HarvesterEscorts,BaseSpecific,BaseDefences,BaseGeneral}
 
-There are many Tactical Ploys. "Escort the Harvester", "Survey and Protect the Base", "Support local Units Under Attack", "Degrade Local Units"
+There are many Tactical Ploys. "Escort the Harvester", "Survey and Protect the Base", "Support local Units Under Attack", "Degrade Local Units". These are based upon local Tactical Assessments and Hueristics. 
 
 ![ScreenShot](SimpleBattle.PNG)
   
-## Fog Of War Implementation ##
+### Fog Of War Implementation ###
 The Fog of War implementation is rather basic, but necessarily to hide the enemy intent.  This is implemented as a two part process.  
 ![ScreenShot](FOG1.PNG)
 
@@ -50,8 +50,9 @@ It uses a second (Orthogonal) Camera, that is viewing a 20x20 matrix Fog Mask se
 The FOG Camera is viewing these FOG Mask Segments matrix, and the renders its view into a Custom Render Texture. This Custom Render Texture is used as an input into a FOG Shader, which masks part of the FOG Overaly Plane Surface in the main scene.  
 ![ScreenShot](FOG2.PNG)
 
-
-
+### Fog Of War Shader ###
+The following Shader uses the Custom Render Texture ass an Input to Mask an overall Noise generated cloud Material (With some slowly moving Clouds, based upon a Time offset.
+![ScreenShot](FOGShader.PNG)
 
 
 
