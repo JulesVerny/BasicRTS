@@ -1,6 +1,9 @@
 # A Basic RTS codebase
 A Very Simple Real Time Strategy (RTS) code base made in Unity.
 
+The Game can be played from your Browser at Simmer IO   (https://simmer.io/@JulesWombat/basic-rts)  It requires a PC, for Mouse Right and Left Click operations. 
+
+
 I have played the classic C&C RTS games from the 1990s, and enjoyed the skirmish mode. I have often thought of the challenge to create a compelling and challenging RTS Enemy player. This is my attempt after many years of thought.  My previous attempt  used the Unity Real Time (RTS) Asset to help provide the core platform. This resulted in "Farmwars", which was kinda fun. However the enemy NPC player behvaiours was not under the develoepr control, and a little obscure.
 
 ![ScreenShot](OverviewPic.PNG)
@@ -39,6 +42,8 @@ The Attack Targets could be one of : {None, Harvester,HarvesterEscorts,BaseSpeci
 
 There are many Tactical Ploys. "Escort the Harvester", "Survey and Protect the Base", "Support local Units Under Attack", "Degrade Local Units". These are based upon local Tactical Assessments and Hueristics. 
 
+Note you can view the AI behvaiours via a Backdoor keyboard. Press "D" For Debug. This will deactivate the Fog of War, and Display an AI Debug Window, with a few hueristics, the Build Queue, and the Attack Strategy if any. Press D again to disbale this backdoor. 
+ 
 ![ScreenShot](SimpleBattle.PNG)
   
 ### Fog Of War Implementation ###
@@ -55,5 +60,14 @@ The following Shader uses the Custom Render Texture ass an Input to Mask an over
 ![ScreenShot](FOGShader.PNG)
 
 
+## Concluding Notes ##
+
+The code is a bit of a mess, but the game play is quite compelling as a basic Skirmish mode.
+
+The early game is to overcome a few waves of attack from the Enemy AI.  There are few mid map battles, the battles are around bases and the harvester escorts.  Once hte player has defeated a few waves, it is possible to turtlke, build up defences and a large force to overcome the enemy harvester escorts and kill off their harvesters.  However the end game can get quite tedious, as the Enemy will have built up large defences, so the game becoems a bit of a slugfest to overcome their built defences.  This seems typical of the old RTS games like Age of Empires. 
+
+So there is some further balancing and refinement of the enemy attack and defence ploys.  
+
+There are possible options to incorporate Repair and Sell options. (e.g. repair All Units slowly at own base) - However a general Repair, would be a little awkward to implment as a AI behiaviour. So the repair mode was dropped. Similarly the Player can get caught with no Harvester, or Funding, but many Defence Assets.  This is a lose situation, and it takes the enemy long time to take advantage, and kill off the player.  So the end game for both the Player and the Enemy AI player is very slow.
 
 
