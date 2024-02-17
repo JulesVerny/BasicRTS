@@ -1,16 +1,22 @@
 # A Basic RTS codebase
-A Very Simple Real Time Strategy (RTS) code base made in Unity.
+A Very Basic Real Time Strategy (RTS) Skirmish Mode code base made in Unity.
 
+### Video Demo:  ###
+See a Brief You Tube Video at:  https://www.youtube.com/watch?v=YUVWX5xAq6A
+
+### Play The Game: ### 
 The Game can be played from your Browser at Simmer IO   (https://simmer.io/@JulesWombat/basic-rts)  It requires a PC, for Mouse Right and Left Click operations. 
 
+Having played the classic C&C RTS games from the 1990s, and enjoyed the skirmish modes,  I have often thought of the challenge to create a compelling and challenging RTS Enemy Skirmish mode player. This is my attempt after many years of thought.  
 
-I have played the classic C&C RTS games from the 1990s, and enjoyed the skirmish mode. I have often thought of the challenge to create a compelling and challenging RTS Enemy player. This is my attempt after many years of thought.  My previous attempt  used the Unity Real Time (RTS) Asset to help provide the core platform. This resulted in "Farmwars", which was kinda fun. However the enemy NPC player behvaiours was not under the develoepr control, and a little obscure.
+My previous attempt  used the Unity Real Time (RTS) Asset to help provide the core platform. This resulted in "Farmwars", See (https://www.youtube.com/watch?v=_BvcVxDoaak)   which was kinda fun. However the enemy NPC player behaviours was not under the develoepr control, and a little obscure to get compelling behaviours.
 
 ![ScreenShot](OverviewPic.PNG)
 
-The very simple RTS game for the Player (green) to play against an Game AI coordinated Red opponent. The Player and the Enemy each start with a Base, consisting of a Base Headquarters, Factory and a Refinary with a Harvester Unit. The Harvester will need to be sent off to hunt for Ore in a Ore fields distributed amonsgt the scene. The Player or Enemy can build either Humvees or Tanks as Units to go on the attack, or build either Gun  or Laser Turrest to defend their base.  The gamne is won, when either the Player or Enemy destroys the opponents Headquarters.  There is no Repair or sell modes, so there is careful budget management, especially if your Factory, Refinary or Harvestr are destroyed. Gun and Laser Defence Turrets can only be built upon Base Mount points, so as to ensure that its possible to code up the Enemy Defence builds.     
+## Game Overview ##
+The very simple RTS game for the Player (green) to play against an Game AI coordinated Red opponent. The Player and the Enemy each start with a Base, consisting of a Base Headquarters, Factory and a Refinary with a Harvester Unit. The Harvester will need to be sent off to hunt for Ore in a Ore fields distributed amonsgt the scene. The Player or Enemy can build either Humvees or Tanks as Units to go on the attack, or build either Gun  or Laser Turrest to defend their base.  The mission is won, when either the Player or Enemy destroys the opponents Headquarters.  There are no Repair or sell modes, so careful budget management and risk is required, especially if your Factory, Refinary or Harvester are destroyed. Gun and Laser Defence Turrets can only be built upon Base Mount points, so as to ensure that its possible to code up the Enemy Defence builds.     
 
-This project is a bottom up attempt to implement an interesting Enemy behaviours in direct code. The code as expected gets prestty complex and messy pretty quickly. Looked at Behvaioural Trees and State Transition diagrams, but to my mind these graphical methods did not not necessarily reduce complexity, than direct code. So the Unity C# scripts here are primarily based upon Units progressing States and Modes, expressed as a state variable against Enumerated state.  Combined with Random Variables and timeouts. 
+This project is a bottom up attempt to implement an interesting Enemy behaviours in direct code, rtaher than use any existing RTS framework. The code as expected quickly gets pretty complex and messy. Behvaioural Trees and State Transition diagrams were considered, but to my mind these graphical methods did not not necessarily reduce complexity, any more than direct code. I am also more comfortable refactoriung code, than sub dividing diagrams and graphs.  So the Unity C# scripts here are primarily based upon Units progressing States and Modes.These are implemented as a progress of a State variable against Enumerated types.  Progressing a Unit State in combination of Random variables, huerisitics and timeouts to provide basic enemy behaviours. 
 
 ## Implementation Notes ##
 
@@ -18,7 +24,7 @@ This project is a bottom up attempt to implement an interesting Enemy behaviours
 
 The Unity Package has been uploaded containing my code into this GIT repository. So most of the Assets and Code to run can be imported into a Unity Project. You will also need to Import Text Mesh Pro from Unity for the main User Interface, and some Grass, Mud, Rock Terrain textures from Third Party Packages. 
 
-So the code is not pretty.  The main C# Script files are as follows, andhave been uploaded for view explicitly: 
+The main C# Script files are as follows, and have been uploaded for view explicitly: 
 
 -   GameManager.CS           :  This manages the overall RTS Mission Game. It spawns the Player and the Enemy Base.  
 -   PlayerUserInterface.CS   :  This provides the user interface for the Player (Green)  
@@ -33,16 +39,18 @@ So the code is not pretty.  The main C# Script files are as follows, andhave bee
 
 ### Enemy AI Implementation: Build Queue and Attack Assessments ###
 
-Most of the "Interesting" code is managed within the EnemyAIManager.CS.  This is the scheduler forthe Enemy (AI) behaviours. It is based upon two core elements.
+Most of the "Interesting" code is managed within the EnemyAIManager.CS.  This is the scheduler for the Enemy (AI) behaviours. It is based upon two core elements.
 -   Build Strategy            :  A Build Queue, of what RTS components to build next. Based upon a combination of Random choice, and a number of Tactical hueristics
 -   An Attack Assessment      :  Review how many Tanks or Humvees necessary to make a reasonable attack on the Enemy Harvester, Base etc.  The Enemy AI makes an assessment on Player Strength in number of Units protecting their Harvester, At base, or Base Defences, and chooses different Targets accordingly.  
+
+Within the Main Fixed Update cycle there is a One second Tactical Assessment, to Assess the tactical situation (Number of Player Harvesters, Tanks, Base Defences vs the Enemies own numbers), in addition to any current Atatcks on Base, Harvesters or own Units, to respond to. Then there is cycle period of around every minute to Reassess the Current Build Strategy. Initially set to random, the Build Strategy is modified according to the current Tactical heuristics and random adjustments, and Attack Assessment is also made within the Strategy loop period. This counts the likley number of Humvees or Tanks necessary for a probable success.    
 
 The Build Strategy can be choice of: {None,Mixed,HumveeFest,HardTank,BuildEconomy,BuildDefences}
 The Attack Targets could be one of : {None, Harvester,HarvesterEscorts,BaseSpecific,BaseDefences,BaseGeneral}
 
 There are many Tactical Ploys. "Escort the Harvester", "Survey and Protect the Base", "Support local Units Under Attack", "Degrade Local Units". These are based upon local Tactical Assessments and Hueristics. 
 
-Note you can view the AI behvaiours via a Backdoor keyboard. Press "D" For Debug. This will deactivate the Fog of War, and Display an AI Debug Window, with a few hueristics, the Build Queue, and the Attack Strategy if any. Press D again to disbale this backdoor. 
+Note you can view the AI behaviours via a Backdoor keyboard. Press "D" For Debug. This will deactivate the Fog of War, and Display an AI Debug Window, with a few hueristics, the Build Queue, and the Attack Strategy if any. Press D again to disbale this backdoor. 
  
 ![ScreenShot](SimpleBattle.PNG)
   
