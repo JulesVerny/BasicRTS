@@ -5,7 +5,7 @@ A Very Basic Real Time Strategy (RTS) Skirmish Mode code base made in Unity.
 See a Brief You Tube Video at:  https://www.youtube.com/watch?v=YUVWX5xAq6A
 
 ### Play The Game: ### 
-The Game can be played from your Browser at Simmer IO   (https://simmer.io/@JulesWombat/basic-rts)  It requires a PC, for Mouse Right and Left Click operations. 
+The Game can be played from your Browser On Unity Play : ( https://play.unity.com/en/games/df15c77d-9144-48e0-a04d-c201e68c828c/webglbuild ) It requires a PC, for Mouse Right and Left Click operations. 
 
 Having played the classic C&C RTS games from the 1990s, and enjoyed the skirmish modes,  I have often thought of the challenge to create a compelling and challenging RTS Enemy Skirmish mode player. This is my attempt after many years of thought.  
 
