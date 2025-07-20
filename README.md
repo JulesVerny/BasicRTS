@@ -50,7 +50,7 @@ The Attack Target Mode could be one of : {None, Harvester, HarvesterEscorts, Bas
 
 There are many Tactical Ploys. "Escort the Harvester", "Survey and Protect the Base", "Support local Units Under Attack", "Degrade Local Units". These are based upon local Tactical Assessments and Hueristics. 
 
-Theier are some 'cheat' ploys on behalf of the AI, to balance the Enemy Unit forces and Economy against the player, to make more interesting/ partially informed AI game play, and residual income to overcome late game. 
+There are some 'cheat' heuristics on behalf of the AI, which identify and balance the Enemy Unit forces and Economy against the player, to make for more interesting/ partially informed AI game play, and also some residual none harvested periodic income to overcome any late game stalemates. 
 
 Note you can view the AI behaviours via a Backdoor keyboard. Press "D" For Debug. This will deactivate the Fog of War, and Display an AI Debug Window, and will display just a few of the tactical hueristics, the Build Queue, and the Attack Strategy if any. This will provide an insight (and cheat) on what the Enemy Game AI has assessed and scheduled to occur next. Press D again to disable this backdoor. 
  
@@ -58,6 +58,7 @@ Note you can view the AI behaviours via a Backdoor keyboard. Press "D" For Debug
   
 ### Fog Of War Implementation ###
 The Fog of War is a very very basic implementation, but necessarily to hide the enemy intent.  This is implemented as a two part process.  
+
 ![ScreenShot](FOG1.PNG)
 
 It uses a second (Orthogonal) Camera, that is viewing a 20x20 matrix Fog Mask segments. These are controlled by the FogWarManager. The FogWarManager switches FOG segments on or off, according to the location of the Player Units locations in the scene. 
@@ -68,6 +69,7 @@ The FOG Camera is viewing these FOG Mask Segments matrix, and then renders its v
 
 ### Fog Of War Shader ###
 The following Shader uses the Custom Render Texture ass an Input to Mask an overall Noise generated cloud Material (With some slowly moving Clouds, based upon a Time offset.
+
 ![ScreenShot](FOGShader.PNG)
 
 
